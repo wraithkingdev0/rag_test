@@ -9,6 +9,12 @@ from dotenv import load_dotenv
 # Load environment variables from .env file
 load_dotenv()
 
+# LangSmith Setup (optional - works automatically if env vars are set)
+# Set these in your .env file:
+# LANGCHAIN_TRACING_V2=true
+# LANGCHAIN_API_KEY=your_api_key_here
+# LANGCHAIN_PROJECT=rag-langchain  # Optional: organize traces by project
+
 def format_docs(docs):
     return "\n\n".join(f"[source={d.metadata.get('source','local')}] {d.page_content}" for d in docs)
 

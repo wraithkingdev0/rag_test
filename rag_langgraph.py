@@ -11,6 +11,12 @@ from dotenv import load_dotenv
 # Load environment variables from .env file
 load_dotenv()
 
+# LangSmith Setup (optional - works automatically if env vars are set)
+# Set these in your .env file:
+# LANGCHAIN_TRACING_V2=true
+# LANGCHAIN_API_KEY=your_api_key_here
+# LANGCHAIN_PROJECT=rag-langgraph  # Optional: organize traces by project
+
 class State(TypedDict):
     question: str
     docs: List[Document]
@@ -72,6 +78,8 @@ graph.add_edge("retrieve", "context")
 graph.add_edge("context", "generate")
 graph.add_edge("generate", END)
 
+# Compile graph with LangSmith tracing enabled
+# Traces will automatically appear in LangSmith if LANGCHAIN_TRACING_V2=true
 app = graph.compile()
 
 def main():

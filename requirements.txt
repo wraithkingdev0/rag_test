@@ -5,3 +5,4 @@ langchain-core
 chromadb
 python-dotenv
 langgraph
+langsmith
